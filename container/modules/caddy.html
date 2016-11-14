@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><strong>caddy</strong></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Scripts</h2>
+<ul class="nowrap">
+  <li><a href="../scripts/container.html">container</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>caddy</code></h1>
+<p>Caddy web server.</p>
+<p>
+
+
+<pre>
+<span class="global">require</span>(<span class="string">"module/caddy"</span>)
+
+ExampleSite=caddy:Website{hostname=<span class="string">'example.com'</span>, root=<span class="string">'/var/www'</span>}
+ExampleSite:AddRedirect{source=<span class="string">'/redirectme'</span>, target=<span class="string">'/ivebeenredirected'</span>, status=<span class="number">307</span>}
+ExampleSite:AddRewrite{source=<span class="string">'/rewriteme'</span>, target=<span class="string">'/'</span>}
+</pre>
+
+<p>Loading the caddy module automatically exports /var/www to the docroot directory and /root to the home directory.
+The caddy object is also exposed under the name webserver.</p>
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#AddWebsite">AddWebsite (website)</a></td>
+	<td class="summary">Add a new website to caddy server config.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#website:AddRedirect">website:AddRedirect (params)</a></td>
+	<td class="summary">Add redirect rule to the website.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#website:AddRewrite">website:AddRewrite (params)</a></td>
+	<td class="summary">Add rewrite rule to the website.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#website:AddProxy">website:AddProxy (params)</a></td>
+	<td class="summary">Add proxy rule to the website.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AddFastCGI">AddFastCGI (config)</a></td>
+	<td class="summary">Add a new FastCGI server caddy server config.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "AddWebsite"></a>
+    <strong>AddWebsite (website)</strong>
+    </dt>
+    <dd>
+    Add a new website to caddy server config.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">website</span>
+         {hostname='hostname', root='/path/to/docroot'}
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        website
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> WebSite = caddy:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "website:AddRedirect"></a>
+    <strong>website:AddRedirect (params)</strong>
+    </dt>
+    <dd>
+    Add redirect rule to the website.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+         {source='/source', target='/target', status=status}
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        website
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> WebSite = caddy:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}
+WebSite:AddRedirect{source=<span class="string">'/source'</span>, target=<span class="string">'/target'</span>, status=status}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "website:AddRewrite"></a>
+    <strong>website:AddRewrite (params)</strong>
+    </dt>
+    <dd>
+    Add rewrite rule to the website.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+         {source='/source', target='/target'}
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        website
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> WebSite = caddy:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}
+WebSite:AddRewrite{source=<span class="string">'/source'</span>, target=<span class="string">'/target'</span>}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "website:AddProxy"></a>
+    <strong>website:AddProxy (params)</strong>
+    </dt>
+    <dd>
+    Add proxy rule to the website.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+         {source='/', target='127.0.0.1:8080'}
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        website
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> WebSite = caddy:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}
+WebSite:AddProxy{source=<span class="string">'/'</span>, target=<span class="string">'127.0.0.1:8080'</span>}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "AddFastCGI"></a>
+    <strong>AddFastCGI (config)</strong>
+    </dt>
+    <dd>
+    Add a new FastCGI server caddy server config.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">config</span>
+         {ext='php',socket='/var/run/php5-fpm.sock'}
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2016-11-14 10:37:16 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
