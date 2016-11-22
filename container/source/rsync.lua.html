@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>container</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+
+<h2>Source</h2>
+<ul class="nowrap">
+  <li><a href="../source/bind.lua.html">bind.lua</a></li>
+  <li><a href="../source/caddy.lua.html">caddy.lua</a></li>
+  <li><a href="../source/letsencrypt.lua.html">letsencrypt.lua</a></li>
+  <li><a href="../source/mysql.lua.html">mysql.lua</a></li>
+  <li><a href="../source/nat64.lua.html">nat64.lua</a></li>
+  <li><a href="../source/network.lua.html">network.lua</a></li>
+  <li><a href="../source/nginx.lua.html">nginx.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/php.lua.html">php.lua</a></li>
+  <li><strong>rsync.lua</strong></li>
+  <li><a href="../source/samba.lua.html">samba.lua</a></li>
+  <li><a href="../source/sshd.lua.html">sshd.lua</a></li>
+  <li><a href="../source/tinc.lua.html">tinc.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/container.lua.html">container.lua</a></li>
+  <li><a href="../source/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../source/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../source/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../source/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../source/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../source/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../source/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../source/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/bind.html">bind</a></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/letsencrypt.html">letsencrypt</a></li>
+  <li><a href="../modules/mysql.html">mysql</a></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><a href="../modules/owncloud.html">owncloud</a></li>
+  <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
+  <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+    <h2>rsync.lua</h2>
+<pre>
+<span class="comment">---RSync File synchronisation daemon.
+</span><span class="comment">--@module rsync
+</span>rsync = {}
+
+<span class="comment">---RSync Server.
+</span><span class="comment">--@field port integer Port to listen on.
+</span><span class="comment">--@table server
+</span><a id="9"></a>
+<span class="comment">---Add RSync Server.
+</span><span class="comment">--@param server
+</span><span class="comment">--@return server
+</span><span class="comment">--@usage local RSyncD = rsync:AddServer{port='12345'}
+</span><span class="comment">--RSyncD:AddShare{name='/var/www', path='/var/www'}
+</span><a id="15"></a><span class="comment">--RSyncD:AddUser{username='user', password='password'}
+</span><span class="keyword">function</span> rsync:AddServer(server)
+	<span class="keyword">if</span> <span class="keyword">not</span> rsync.daemons <span class="keyword">then</span> rsync.daemons = {} <span class="keyword">end</span>
+
+	<span class="comment">---RSync User.
+</span>	<span class="comment">--@field username string Username.
+</span>	<span class="comment">--@field password string Password.
+</span>	<span class="comment">--@table user
+</span><a id="23"></a>
+	<span class="comment">---Add user to server.
+</span>	<a id="25"></a><span class="comment">--@param user user
+</span>	<span class="keyword">function</span> server:AddUser(user)
+		<span class="keyword">if</span> <span class="keyword">not</span> self.users <span class="keyword">then</span> self.users = {} <span class="keyword">end</span>
+		self.users[user] = user
+	<span class="keyword">end</span>
+
+	<span class="comment">---RSync Share.
+</span>	<span class="comment">--@field name string Path on server.
+</span>	<span class="comment">--@field path string Local path to map to.
+</span>	<span class="comment">--@field[opt] readonly boolean
+</span>	<span class="comment">--@table path
+</span><a id="36"></a>
+	<span class="comment">---Share a directory.
+</span>	<a id="38"></a><span class="comment">--@param path path
+</span>	<span class="keyword">function</span> server:Share(path)
+		<span class="keyword">if</span> <span class="keyword">not</span> self.paths <span class="keyword">then</span> self.paths = {} <span class="keyword">end</span>
+		<span class="keyword">function</span> path:AddUser(user)
+			<span class="keyword">if</span> <span class="keyword">not</span> self.users <span class="keyword">then</span> self.users = {} <span class="keyword">end</span>
+			self.users[user] = user
+		<span class="keyword">end</span>
+		self.paths[path.name] = paths
+		<span class="keyword">return</span> self.paths[path.name]
+	<span class="keyword">end</span>
+
+	<span class="keyword">if</span> <span class="keyword">not</span> server.port <span class="keyword">then</span> server.port = <span class="number">1234</span> <span class="keyword">end</span>
+	rsync.daemons[server.port] = server
+	<span class="keyword">return</span> rsync.daemons[server.port]
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> install_container()
+	install_package(<span class="string">"rsync"</span>)
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> background()
+	<span class="keyword">if</span> <span class="keyword">not</span> rsync.daemons <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">end</span>
+	<span class="global">print</span>(<span class="string">"Starting RSync."</span>)
+	<span class="keyword">for</span> _, daemon <span class="keyword">in</span> <span class="global">pairs</span>(rsync.daemons) <span class="keyword">do</span>
+		debug_print(<span class="string">'run'</span>, <span class="string">"RSync Server on port "</span> .. daemon.port)
+
+		<span class="keyword">local</span> config = <span class="string">"pid file = /var/run/rsyncd."</span> .. daemon.port .. <span class="string">".pid\n"</span>
+					.. <span class="string">"lock file = /var/run/rsync."</span> .. daemon.port .. <span class="string">"lock\n"</span>
+					.. <span class="string">"log file = /var/log/rsync."</span> .. daemon.port .. <span class="string">"log\n"</span>
+					.. <span class="string">"port = "</span> .. daemon.port .. <span class="string">"\n"</span>
+		<span class="keyword">if</span> daemon.paths <span class="keyword">then</span> <span class="keyword">for</span> _, path <span class="keyword">in</span> <span class="global">pairs</span>(daemon.paths) <span class="keyword">do</span>
+			config = config .. <span class="string">"["</span> .. path.name .. <span class="string">"]\n"</span>
+					.. <span class="string">"path = "</span> .. path.path .. <span class="string">"\n"</span>
+					.. <span class="string">"timeout = 300\n"</span>
+			<span class="keyword">if</span> path.readonly <span class="keyword">then</span> config = config .. <span class="string">"read only = true\n"</span> <span class="keyword">end</span>
+		<span class="keyword">end</span> <span class="keyword">end</span>
+		write_file(<span class="string">"/etc/rsyncd/rsyncd."</span> .. daemon.port .. <span class="string">".conf"</span>, config)
+		exec(<span class="string">"rsync --daemon --config=/etc/rsyncd/rsyncd."</span> .. daemon.port .. <span class="string">".conf &amp;"</span>)
+	<span class="keyword">end</span>
+	<span class="keyword">return</span> <span class="number">0</span>
+<span class="keyword">end</span>
+Mount{path=<span class="string">'/etc/rsyncd'</span>, <span class="global">type</span>=<span class="string">'tmpfs'</span>}</pre>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2016-11-22 18:23:34 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

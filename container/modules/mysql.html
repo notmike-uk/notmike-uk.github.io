@@ -33,6 +33,7 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
 </ul>
 
 
@@ -40,20 +41,35 @@
 <ul class="nowrap">
   <li><a href="../modules/bind.html">bind</a></li>
   <li><a href="../modules/caddy.html">caddy</a></li>
+  <li><a href="../modules/letsencrypt.html">letsencrypt</a></li>
   <li><strong>mysql</strong></li>
   <li><a href="../modules/nat64.html">nat64</a></li>
+  <li><a href="../modules/network.html">network</a></li>
+  <li><a href="../modules/nginx.html">nginx</a></li>
   <li><a href="../modules/owncloud.html">owncloud</a></li>
   <li><a href="../modules/php.html">php</a></li>
+  <li><a href="../modules/rsync.html">rsync</a></li>
   <li><a href="../modules/samba.html">samba</a></li>
+  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><a href="../modules/tinc.html">tinc</a></li>
   <li><a href="../modules/wordpress.html">wordpress</a></li>
 </ul>
-<h2>Scripts</h2>
+<h2>Manual</h2>
 <ul class="nowrap">
-  <li><a href="../scripts/container.html">container</a></li>
+  <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
+  <li><a href="../manual/README.md.html">README</a></li>
 </ul>
-<h2>Topics</h2>
-<ul class="">
-  <li><a href="../topics/README.md.html">README</a></li>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
+</ul>
 </ul>
 
 </div>
@@ -62,18 +78,7 @@
 
 <h1>Module <code>mysql</code></h1>
 <p>MySQL server.</p>
-<p>
-
-
-<pre>
-<span class="global">require</span>(<span class="string">"module/mysql"</span>)
-
-<span class="keyword">local</span> myDatabase = mysql:Database{database=<span class="string">'mydatabase'</span>}
-myDatabase:Grant{user=<span class="string">'god'</span>, password=<span class="string">'thisisasecurepasswordxkcd'</span>}
-</pre>
-
 <p>An auto-generated root password is stored in the mysql directory as .mysql-root.pwd.</p>
-</p>
 
 
 <h2><a href="#Functions">Functions</a></h2>
@@ -83,8 +88,15 @@ myDatabase:Grant{user=<span class="string">'god'</span>, password=<span class="s
 	<td class="summary">Add a database to MySQL server.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#database:Grant">database:Grant (user)</a></td>
+	<td class="name" nowrap><a href="#database:Grant">database:Grant (dbuser)</a></td>
 	<td class="summary">Grant access to database.</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#dbuser">dbuser</a></td>
+	<td class="summary">Database User.</td>
 	</tr>
 </table>
 
@@ -98,10 +110,12 @@ myDatabase:Grant{user=<span class="string">'god'</span>, password=<span class="s
     <dt>
     <a name = "Database"></a>
     <strong>Database (database)</strong>
+    <a style="float:right;" href="../source/mysql.lua.html#10">line 10</a>
     </dt>
     <dd>
     Add a database to MySQL server.
 
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -126,27 +140,61 @@ myDatabase:Grant{user=<span class="string">'god'</span>, password=<span class="s
 </dd>
     <dt>
     <a name = "database:Grant"></a>
-    <strong>database:Grant (user)</strong>
+    <strong>database:Grant (dbuser)</strong>
+    <a style="float:right;" href="../source/mysql.lua.html#23">line 23</a>
     </dt>
     <dd>
     Grant access to database.
 
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">user</span>
+        <li><span class="parameter">dbuser</span>
          {user='username',password='password'}
         </li>
     </ul>
 
 
 
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/mysql.html#dbuser">dbuser</a>
+    </ul>
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> Database = mysql:Database(<span class="string">'testdb'</span>)
-Database:Grant{user=<span class="string">'username'</span>,password=<span class="string">'thisisasecurepasswordxkcd'</span>}</pre>
+        <pre class="example"><span class="keyword">local</span> Database = mysql:Database(<span class="string">'testdb'</span>)</pre>
     </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "dbuser"></a>
+    <strong>dbuser</strong>
+    <a style="float:right;" href="../source/mysql.lua.html#19">line 19</a>
+    </dt>
+    <dd>
+    Database User.
+
+    </ul>
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">username</span>
+         string Username.
+        </li>
+        <li><span class="parameter">password</span>
+         string Password.
+        </li>
+    </ul>
+
+
+
+
 
 </dd>
 </dl>
@@ -156,7 +204,7 @@ Database:Grant{user=<span class="string">'username'</span>,password=<span class=
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2016-11-14 10:37:16 </i>
+<i style="float:right;">Last updated 2016-11-22 18:23:34 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

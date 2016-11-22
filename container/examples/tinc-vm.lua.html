@@ -30,12 +30,19 @@
   <li><a href="../index.html">Index</a></li>
 </ul>
 
-<h2>Contents</h2>
-<ul>
-<li><a href="#Functions">Functions</a></li>
+
+
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><strong>tinc-vm.lua</strong></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
 </ul>
-
-
 <h2>Modules</h2>
 <ul class="nowrap">
   <li><a href="../modules/bind.html">bind</a></li>
@@ -51,23 +58,12 @@
   <li><a href="../modules/samba.html">samba</a></li>
   <li><a href="../modules/sshd.html">sshd</a></li>
   <li><a href="../modules/tinc.html">tinc</a></li>
-  <li><strong>wordpress</strong></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
 </ul>
 <h2>Manual</h2>
 <ul class="nowrap">
   <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
   <li><a href="../manual/README.md.html">README</a></li>
-</ul>
-<h2>Examples</h2>
-<ul class="nowrap">
-  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
-  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
-  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
-  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
-  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
-  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
-  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
-  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
 </ul>
 </ul>
 
@@ -75,56 +71,21 @@
 
 <div id="content">
 
-<h1>Module <code>wordpress</code></h1>
-<p>Wordpress web application.</p>
-<p>
+    <h2>tinc-vm.lua</h2>
+<pre>
+#!/usr/<span class="keyword">local</span>/sbin/container
+<span class="comment">---Basic container with tinc network.
+</span><span class="global">require</span>(<span class="string">"module/network"</span>)
+<span class="global">require</span>(<span class="string">"module/sshd"</span>)
 
-</p>
+<span class="comment">--Add tinc interface
+</span><span class="keyword">local</span> ExtraInterface = network:AddInterface{name=<span class="string">'test'</span>, <span class="global">type</span>=<span class="string">'tinc'</span>, default_route=<span class="keyword">true</span>, tincpath=<span class="string">'../.tinc-router.lua/tinc/tinc_testnet'</span>}
+<span class="comment">--Assign IP Addresses.
+</span>ExtraInterface:AddIP{ipv4=<span class="string">'100.100.0.2'</span>, ipv6=<span class="string">'fcfc::2'</span>}
 
+sshd:SetRootPassword(<span class="string">"password"</span>)
 
-<h2><a href="#Functions">Functions</a></h2>
-<table class="function_list">
-	<tr>
-	<td class="name" nowrap><a href="#Instance">Instance (website)</a></td>
-	<td class="summary">Create Wordpress instance.</td>
-	</tr>
-</table>
-
-<br/>
-<br/>
-
-
-    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
-
-    <dl class="function">
-    <dt>
-    <a name = "Instance"></a>
-    <strong>Instance (website)</strong>
-    <a style="float:right;" href="../source/wordpress.lua.html#9">line 9</a>
-    </dt>
-    <dd>
-    Create Wordpress instance.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">website</span>
-         {hostname='hostname'}
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        website
-    </ol>
-
-
-
-
-</dd>
-</dl>
+Mount{path=<span class="string">"/root"</span>, <span class="global">type</span>=<span class="string">"map"</span>, source=<span class="string">"root"</span>}</pre>
 
 
 </div> <!-- id="content" -->

@@ -41,9 +41,9 @@
 <ul class="nowrap">
   <li><a href="../modules/bind.html">bind</a></li>
   <li><a href="../modules/caddy.html">caddy</a></li>
-  <li><a href="../modules/letsencrypt.html">letsencrypt</a></li>
+  <li><strong>letsencrypt</strong></li>
   <li><a href="../modules/mysql.html">mysql</a></li>
-  <li><strong>nat64</strong></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
   <li><a href="../modules/network.html">network</a></li>
   <li><a href="../modules/nginx.html">nginx</a></li>
   <li><a href="../modules/owncloud.html">owncloud</a></li>
@@ -76,8 +76,8 @@
 
 <div id="content">
 
-<h1>Module <code>nat64</code></h1>
-<p>NAT64 Gateway.</p>
+<h1>Module <code>letsencrypt</code></h1>
+<p>Letsencrypt automatic certificates.</p>
 <p>
 
 </p>
@@ -86,15 +86,15 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#SetNAT64">SetNAT64 (nat64config)</a></td>
-	<td class="summary">Set the NAT64 gateway parameters.</td>
+	<td class="name" nowrap><a href="#GetCertificates">GetCertificates (sslhost)</a></td>
+	<td class="summary">Add a new website to nginx server config.</td>
 	</tr>
 </table>
 <h2><a href="#Tables">Tables</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#nat64config">nat64config</a></td>
-	<td class="summary">NAT64 Configuration.</td>
+	<td class="name" nowrap><a href="#sslhost">sslhost</a></td>
+	<td class="summary">sslhost configuration.</td>
 	</tr>
 </table>
 
@@ -106,25 +106,40 @@
 
     <dl class="function">
     <dt>
-    <a name = "SetNAT64"></a>
-    <strong>SetNAT64 (nat64config)</strong>
-    <a style="float:right;" href="../source/nat64.lua.html#15">line 15</a>
+    <a name = "GetCertificates"></a>
+    <strong>GetCertificates (sslhost)</strong>
+    <a style="float:right;" href="../source/letsencrypt.lua.html#16">line 16</a>
     </dt>
     <dd>
-    Set the NAT64 gateway parameters.
+    Add a new website to nginx server config.
 
     </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">nat64config</span>
-         nat64config
+        <li><span class="parameter">sslhost</span>
+
+
+
         </li>
     </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        sslhost
+    </ol>
 
 
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/letsencrypt.html#sslhost">sslhost</a>
+    </ul>
 
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> Cert = letsencrypt:GetCertificates{hostname=<span class="string">'example.com'</span>}</pre>
+    </ul>
 
 </dd>
 </dl>
@@ -132,26 +147,22 @@
 
     <dl class="function">
     <dt>
-    <a name = "nat64config"></a>
-    <strong>nat64config</strong>
-    <a style="float:right;" href="../source/nat64.lua.html#9">line 9</a>
+    <a name = "sslhost"></a>
+    <strong>sslhost</strong>
+    <a style="float:right;" href="../source/letsencrypt.lua.html#11">line 11</a>
     </dt>
     <dd>
-    NAT64 Configuration.
+    sslhost configuration.
 
     </ul>
 
     <h3>Fields:</h3>
     <ul>
-        <li><span class="parameter">ipv4</span>
-         string IPv4 Address of gateway.
+        <li><span class="parameter">hostname</span>
+         string Hostname of server.
         </li>
-        <li><span class="parameter">prefix</span>
-         string IPv6 Prefix to route via NAT64.
-        </li>
-        <li><span class="parameter">pool</span>
-         string IPv4 Pool to use (Auto-NATed).
-         (<em>optional</em>)
+        <li><span class="parameter">root</span>
+         string Path to wwwroot. (optional)
         </li>
     </ul>
 

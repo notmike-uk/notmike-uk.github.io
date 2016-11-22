@@ -30,12 +30,19 @@
   <li><a href="../index.html">Index</a></li>
 </ul>
 
-<h2>Contents</h2>
-<ul>
-<li><a href="#Functions">Functions</a></li>
+
+
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
+  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
+  <li><strong>proxy.lua</strong></li>
+  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
+  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
+  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
+  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
+  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
 </ul>
-
-
 <h2>Modules</h2>
 <ul class="nowrap">
   <li><a href="../modules/bind.html">bind</a></li>
@@ -51,23 +58,12 @@
   <li><a href="../modules/samba.html">samba</a></li>
   <li><a href="../modules/sshd.html">sshd</a></li>
   <li><a href="../modules/tinc.html">tinc</a></li>
-  <li><strong>wordpress</strong></li>
+  <li><a href="../modules/wordpress.html">wordpress</a></li>
 </ul>
 <h2>Manual</h2>
 <ul class="nowrap">
   <li><a href="../manual/Global_Environment.html">Global_Environment</a></li>
   <li><a href="../manual/README.md.html">README</a></li>
-</ul>
-<h2>Examples</h2>
-<ul class="nowrap">
-  <li><a href="../examples/basic-vm.lua.html">basic-vm.lua</a></li>
-  <li><a href="../examples/docs_www.lua.html">docs_www.lua</a></li>
-  <li><a href="../examples/proxy.lua.html">proxy.lua</a></li>
-  <li><a href="../examples/owncloud.lua.html">owncloud.lua</a></li>
-  <li><a href="../examples/wordpress.lua.html">wordpress.lua</a></li>
-  <li><a href="../examples/tinc-router.lua.html">tinc-router.lua</a></li>
-  <li><a href="../examples/tinc-vm.lua.html">tinc-vm.lua</a></li>
-  <li><a href="../examples/nat64-gateway.lua.html">nat64-gateway.lua</a></li>
 </ul>
 </ul>
 
@@ -75,56 +71,20 @@
 
 <div id="content">
 
-<h1>Module <code>wordpress</code></h1>
-<p>Wordpress web application.</p>
-<p>
+    <h2>proxy.lua</h2>
+<pre>
+#!/usr/<span class="keyword">local</span>/sbin/container
+<span class="comment">---Simple web proxy.
+</span><span class="global">require</span>(<span class="string">"module/nginx"</span>)
 
-</p>
+<span class="comment">--Add webserver.
+</span><span class="keyword">local</span> DebianRepo = nginx:AddWebsite{hostname=<span class="string">'debian.linuxship.net'</span>}
+DebianRepo:AddProxy{source=<span class="string">'/'</span>, target=<span class="string">'http://127.0.0.1:3142/ftp.us.debian.org/'</span>}
+<span class="keyword">local</span> DebianRepo2 = nginx:AddWebsite{hostname=<span class="string">':8081'</span>}
+DebianRepo2:AddProxy{source=<span class="string">'/'</span>, target=<span class="string">'https://www.google.com/'</span>, hostname=<span class="string">'www.google.com'</span>}
 
-
-<h2><a href="#Functions">Functions</a></h2>
-<table class="function_list">
-	<tr>
-	<td class="name" nowrap><a href="#Instance">Instance (website)</a></td>
-	<td class="summary">Create Wordpress instance.</td>
-	</tr>
-</table>
-
-<br/>
-<br/>
-
-
-    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
-
-    <dl class="function">
-    <dt>
-    <a name = "Instance"></a>
-    <strong>Instance (website)</strong>
-    <a style="float:right;" href="../source/wordpress.lua.html#9">line 9</a>
-    </dt>
-    <dd>
-    Create Wordpress instance.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">website</span>
-         {hostname='hostname'}
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        website
-    </ol>
-
-
-
-
-</dd>
-</dl>
+<span class="comment">--Map path to doc directory.
+</span>Mount{ path=<span class="string">"/var/www/"</span>, <span class="global">type</span>=<span class="string">"map"</span>, source=<span class="string">"../../doc"</span> }</pre>
 
 
 </div> <!-- id="content" -->

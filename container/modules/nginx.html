@@ -40,12 +40,12 @@
 <h2>Modules</h2>
 <ul class="nowrap">
   <li><a href="../modules/bind.html">bind</a></li>
-  <li><strong>caddy</strong></li>
+  <li><a href="../modules/caddy.html">caddy</a></li>
   <li><a href="../modules/letsencrypt.html">letsencrypt</a></li>
   <li><a href="../modules/mysql.html">mysql</a></li>
   <li><a href="../modules/nat64.html">nat64</a></li>
   <li><a href="../modules/network.html">network</a></li>
-  <li><a href="../modules/nginx.html">nginx</a></li>
+  <li><strong>nginx</strong></li>
   <li><a href="../modules/owncloud.html">owncloud</a></li>
   <li><a href="../modules/php.html">php</a></li>
   <li><a href="../modules/rsync.html">rsync</a></li>
@@ -76,17 +76,17 @@
 
 <div id="content">
 
-<h1>Module <code>caddy</code></h1>
-<p>Caddy web server.</p>
-<p>Loading the caddy module automatically exports /var/www to the docroot directory and /root to the home directory.
-The caddy object is also exposed under the name webserver.</p>
+<h1>Module <code>nginx</code></h1>
+<p>Nignx web server.</p>
+<p>Loading the nginx module automatically exports /var/www to the docroot directory.
+The nginx object is also exposed under the name webserver.</p>
 
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#AddWebsite">AddWebsite (website)</a></td>
-	<td class="summary">Add a new website to caddy server config.</td>
+	<td class="summary">Add a new website to nginx server config.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#website:AddRedirect">website:AddRedirect (redirect)</a></td>
@@ -99,10 +99,6 @@ The caddy object is also exposed under the name webserver.</p>
 	<tr>
 	<td class="name" nowrap><a href="#website:AddProxy">website:AddProxy (proxy)</a></td>
 	<td class="summary">Add proxy rule to the website.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#AddFastCGI">AddFastCGI (fastcgiserver)</a></td>
-	<td class="summary">Add a new FastCGI server caddy server config.</td>
 	</tr>
 </table>
 <h2><a href="#Tables">Tables</a></h2>
@@ -123,10 +119,6 @@ The caddy object is also exposed under the name webserver.</p>
 	<td class="name" nowrap><a href="#proxy">proxy</a></td>
 	<td class="summary">Proxy rule.</td>
 	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#fastcgiserver">fastcgiserver</a></td>
-	<td class="summary">FastCGI server.</td>
-	</tr>
 </table>
 
 <br/>
@@ -139,10 +131,10 @@ The caddy object is also exposed under the name webserver.</p>
     <dt>
     <a name = "AddWebsite"></a>
     <strong>AddWebsite (website)</strong>
-    <a style="float:right;" href="../source/caddy.lua.html#19">line 19</a>
+    <a style="float:right;" href="../source/nginx.lua.html#20">line 20</a>
     </dt>
     <dd>
-    Add a new website to caddy server config.
+    Add a new website to nginx server config.
 
     </ul>
 
@@ -164,19 +156,19 @@ The caddy object is also exposed under the name webserver.</p>
 
     <h3>See also:</h3>
     <ul>
-         <a href="../modules/caddy.html#website">website</a>
+         <a href="../modules/nginx.html#website">website</a>
     </ul>
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> WebSite = caddy:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}</pre>
+        <pre class="example"><span class="keyword">local</span> WebSite = nginx:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}</pre>
     </ul>
 
 </dd>
     <dt>
     <a name = "website:AddRedirect"></a>
     <strong>website:AddRedirect (redirect)</strong>
-    <a style="float:right;" href="../source/caddy.lua.html#43">line 43</a>
+    <a style="float:right;" href="../source/nginx.lua.html#44">line 44</a>
     </dt>
     <dd>
     Add redirect rule to the website.
@@ -201,13 +193,13 @@ The caddy object is also exposed under the name webserver.</p>
 
     <h3>See also:</h3>
     <ul>
-         <li><a href="../modules/caddy.html#redirect">redirect</a></li>
-         <li><a href="../modules/caddy.html#website">website</a></li>
+         <li><a href="../modules/nginx.html#redirect">redirect</a></li>
+         <li><a href="../modules/nginx.html#website">website</a></li>
     </ul>
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> WebSite = caddy:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}
+        <pre class="example"><span class="keyword">local</span> WebSite = nginx:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}
 WebSite:AddRedirect{source=<span class="string">'/source'</span>, target=<span class="string">'/target'</span>, status=status}</pre>
     </ul>
 
@@ -215,7 +207,7 @@ WebSite:AddRedirect{source=<span class="string">'/source'</span>, target=<span c
     <dt>
     <a name = "website:AddRewrite"></a>
     <strong>website:AddRewrite (rewrite)</strong>
-    <a style="float:right;" href="../source/caddy.lua.html#61">line 61</a>
+    <a style="float:right;" href="../source/nginx.lua.html#62">line 62</a>
     </dt>
     <dd>
     Add rewrite rule to the website.
@@ -240,13 +232,13 @@ WebSite:AddRedirect{source=<span class="string">'/source'</span>, target=<span c
 
     <h3>See also:</h3>
     <ul>
-         <li><a href="../modules/caddy.html#rewrite">rewrite</a></li>
-         <li><a href="../modules/caddy.html#website">website</a></li>
+         <li><a href="../modules/nginx.html#rewrite">rewrite</a></li>
+         <li><a href="../modules/nginx.html#website">website</a></li>
     </ul>
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> WebSite = caddy:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}
+        <pre class="example"><span class="keyword">local</span> WebSite = nginx:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}
 WebSite:AddRewrite{source=<span class="string">'/source'</span>, target=<span class="string">'/target'</span>}</pre>
     </ul>
 
@@ -254,7 +246,7 @@ WebSite:AddRewrite{source=<span class="string">'/source'</span>, target=<span cl
     <dt>
     <a name = "website:AddProxy"></a>
     <strong>website:AddProxy (proxy)</strong>
-    <a style="float:right;" href="../source/caddy.lua.html#79">line 79</a>
+    <a style="float:right;" href="../source/nginx.lua.html#81">line 81</a>
     </dt>
     <dd>
     Add proxy rule to the website.
@@ -279,48 +271,15 @@ WebSite:AddRewrite{source=<span class="string">'/source'</span>, target=<span cl
 
     <h3>See also:</h3>
     <ul>
-         <li><a href="../modules/caddy.html#proxy">proxy</a></li>
-         <li><a href="../modules/caddy.html#website">website</a></li>
+         <li><a href="../modules/nginx.html#proxy">proxy</a></li>
+         <li><a href="../modules/nginx.html#website">website</a></li>
     </ul>
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> WebSite = caddy:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}
+        <pre class="example"><span class="keyword">local</span> WebSite = nginx:AddWebsite{hostname=<span class="string">'hostname'</span>, root=<span class="string">'/path/to/docroot'</span>}
 WebSite:AddProxy{source=<span class="string">'/'</span>, target=<span class="string">'127.0.0.1:8080'</span>}</pre>
     </ul>
-
-</dd>
-    <dt>
-    <a name = "AddFastCGI"></a>
-    <strong>AddFastCGI (fastcgiserver)</strong>
-    <a style="float:right;" href="../source/caddy.lua.html#98">line 98</a>
-    </dt>
-    <dd>
-    Add a new FastCGI server caddy server config.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">fastcgiserver</span>
-
-
-
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        fastcgiserver
-    </ol>
-
-
-    <h3>See also:</h3>
-    <ul>
-         <a href="../modules/caddy.html#fastcgiserver">fastcgiserver</a>
-    </ul>
-
 
 </dd>
 </dl>
@@ -330,7 +289,7 @@ WebSite:AddProxy{source=<span class="string">'/'</span>, target=<span class="str
     <dt>
     <a name = "website"></a>
     <strong>website</strong>
-    <a style="float:right;" href="../source/caddy.lua.html#14">line 14</a>
+    <a style="float:right;" href="../source/nginx.lua.html#15">line 15</a>
     </dt>
     <dd>
     Website configuration.
@@ -360,7 +319,7 @@ WebSite:AddProxy{source=<span class="string">'/'</span>, target=<span class="str
     <dt>
     <a name = "redirect"></a>
     <strong>redirect</strong>
-    <a style="float:right;" href="../source/caddy.lua.html#36">line 36</a>
+    <a style="float:right;" href="../source/nginx.lua.html#37">line 37</a>
     </dt>
     <dd>
     Redirect configuration.
@@ -389,7 +348,7 @@ WebSite:AddProxy{source=<span class="string">'/'</span>, target=<span class="str
     <dt>
     <a name = "rewrite"></a>
     <strong>rewrite</strong>
-    <a style="float:right;" href="../source/caddy.lua.html#54">line 54</a>
+    <a style="float:right;" href="../source/nginx.lua.html#55">line 55</a>
     </dt>
     <dd>
     Rewrite rule.
@@ -414,7 +373,7 @@ WebSite:AddProxy{source=<span class="string">'/'</span>, target=<span class="str
     <dt>
     <a name = "proxy"></a>
     <strong>proxy</strong>
-    <a style="float:right;" href="../source/caddy.lua.html#72">line 72</a>
+    <a style="float:right;" href="../source/nginx.lua.html#74">line 74</a>
     </dt>
     <dd>
     Proxy rule.
@@ -429,30 +388,9 @@ WebSite:AddProxy{source=<span class="string">'/'</span>, target=<span class="str
         <li><span class="parameter">target</span>
          string Target to proxy to.
         </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "fastcgiserver"></a>
-    <strong>fastcgiserver</strong>
-    <a style="float:right;" href="../source/caddy.lua.html#94">line 94</a>
-    </dt>
-    <dd>
-    FastCGI server.
-
-    </ul>
-
-    <h3>Fields:</h3>
-    <ul>
-        <li><span class="parameter">ext</span>
-         string Filename extension to match.
-        </li>
-        <li><span class="parameter">socket</span>
-         string Socket to connect to.
+        <li><span class="parameter">hostname</span>
+         string Rewirte Host: header.
+         (<em>optional</em>)
         </li>
     </ul>
 

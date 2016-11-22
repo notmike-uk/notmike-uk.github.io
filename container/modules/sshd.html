@@ -33,7 +33,6 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
-<li><a href="#Tables">Tables</a></li>
 </ul>
 
 
@@ -43,14 +42,14 @@
   <li><a href="../modules/caddy.html">caddy</a></li>
   <li><a href="../modules/letsencrypt.html">letsencrypt</a></li>
   <li><a href="../modules/mysql.html">mysql</a></li>
-  <li><strong>nat64</strong></li>
+  <li><a href="../modules/nat64.html">nat64</a></li>
   <li><a href="../modules/network.html">network</a></li>
   <li><a href="../modules/nginx.html">nginx</a></li>
   <li><a href="../modules/owncloud.html">owncloud</a></li>
   <li><a href="../modules/php.html">php</a></li>
   <li><a href="../modules/rsync.html">rsync</a></li>
   <li><a href="../modules/samba.html">samba</a></li>
-  <li><a href="../modules/sshd.html">sshd</a></li>
+  <li><strong>sshd</strong></li>
   <li><a href="../modules/tinc.html">tinc</a></li>
   <li><a href="../modules/wordpress.html">wordpress</a></li>
 </ul>
@@ -76,8 +75,8 @@
 
 <div id="content">
 
-<h1>Module <code>nat64</code></h1>
-<p>NAT64 Gateway.</p>
+<h1>Module <code>sshd</code></h1>
+<p>OpenSSH Server</p>
 <p>
 
 </p>
@@ -86,15 +85,8 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#SetNAT64">SetNAT64 (nat64config)</a></td>
-	<td class="summary">Set the NAT64 gateway parameters.</td>
-	</tr>
-</table>
-<h2><a href="#Tables">Tables</a></h2>
-<table class="function_list">
-	<tr>
-	<td class="name" nowrap><a href="#nat64config">nat64config</a></td>
-	<td class="summary">NAT64 Configuration.</td>
+	<td class="name" nowrap><a href="#SetRootPassword">SetRootPassword (password)</a></td>
+	<td class="summary">Set the root password.</td>
 	</tr>
 </table>
 
@@ -106,52 +98,19 @@
 
     <dl class="function">
     <dt>
-    <a name = "SetNAT64"></a>
-    <strong>SetNAT64 (nat64config)</strong>
-    <a style="float:right;" href="../source/nat64.lua.html#15">line 15</a>
+    <a name = "SetRootPassword"></a>
+    <strong>SetRootPassword (password)</strong>
+    <a style="float:right;" href="../source/sshd.lua.html#7">line 7</a>
     </dt>
     <dd>
-    Set the NAT64 gateway parameters.
+    Set the root password.
 
     </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">nat64config</span>
-         nat64config
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-</dl>
-    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
-
-    <dl class="function">
-    <dt>
-    <a name = "nat64config"></a>
-    <strong>nat64config</strong>
-    <a style="float:right;" href="../source/nat64.lua.html#9">line 9</a>
-    </dt>
-    <dd>
-    NAT64 Configuration.
-
-    </ul>
-
-    <h3>Fields:</h3>
-    <ul>
-        <li><span class="parameter">ipv4</span>
-         string IPv4 Address of gateway.
-        </li>
-        <li><span class="parameter">prefix</span>
-         string IPv6 Prefix to route via NAT64.
-        </li>
-        <li><span class="parameter">pool</span>
-         string IPv4 Pool to use (Auto-NATed).
-         (<em>optional</em>)
+        <li><span class="parameter">password</span>
+         string
         </li>
     </ul>
 
